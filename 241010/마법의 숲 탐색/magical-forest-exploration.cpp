@@ -19,7 +19,10 @@ bool chkGoDirec(int row, int col, vector<pi> &direc){
         int nr = row + direc[i].first;
         int nc = col + direc[i].second;
 
-        if(nr <= -1 || nr > n || nc < 1 || nc > m || board[nr][nc] != 0){
+        if(nr < -2 || nr > n || nc < 1 || nc > m){
+            return false;
+        }
+        if(nr > 0 && board[nr][nc] != 0){
             return false;
         }
     }
@@ -152,6 +155,8 @@ int main() {
 
         // 정령 남쪽으로 움직이기 
         int last_row = moveTinkerbell(pos);
+
+        // cout << "최종 행 위치: "<<last_row<<'\n';
 
         // 정답 더하기
         ans += last_row;
